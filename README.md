@@ -95,26 +95,6 @@ GET - http://localhost:8080/company/employees/total-payment?id=2&start=2022-04-1
 GET - http://localhost:8080/company/employees/bitacora/total-hours?id=1&start=2022-04-14&end=2022-04-14 - EJERCICIO 4
 
 
-
-
-Ejemplo body:
-{
-"gender_id": 1,
-"job_id": 1,
-"name": "hector23",
-"last_name": "alvarez2",
-"birthdate": "1990-07-14"
-}
-
-POST- http://localhost:8080/company/worker
-
-Ejemplo body:
-{
-"employee_id": 1,
-"worked_hours": 9,
-"worked_date": "2022-04-18"
-}
-
 ## Micronaut 3.4.3 Documentation
 
 - [User Guide](https://docs.micronaut.io/3.4.3/guide/index.html)
