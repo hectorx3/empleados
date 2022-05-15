@@ -1,3 +1,19 @@
+NUEVO PROYECTO!!!!
+
+1.- ./gradlew :infraestructure:web:micronaut:clean
+
+2.- ./gradlew :infraestructure:web:micronaut:build
+
+3.- docker-compose build (ejecutar solo una vez para crear la imagen)
+
+(OPCIONAL) Si hiciste algun ajuste en el codigo y ya existe la imagen, hay que eliminarla
+
+4.- docker-compose up -d (para iniciar los servicios)
+
+(OPCIONAL) docker-compose down (para dar de baja los servicios)
+
+6.- ./gradlew migracion  
+
 Para ejecutar la aplicacion, es necesario contar con: 
 
 1.- docker y docker-compose instalado.
