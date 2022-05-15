@@ -1,12 +1,15 @@
 package mx.edu.ucaribe.ssav2.company.usecases
 
+import jakarta.inject.Inject
+import jakarta.inject.Singleton
 import mx.edu.ucaribe.ssav2.company.models.EmployeeDTO
 import mx.edu.ucaribe.ssav2.company.models.HoraTrabajo
 import mx.edu.ucaribe.ssav2.company.repositories.CompanyRepository
 import java.time.LocalDate
 
+@Singleton
 class RegisterWorkedHours
-constructor(
+@Inject constructor(
     private val companyRepository: CompanyRepository
 ) : UseCase<HoraTrabajo, EmployeeDTO>{
     override fun handle(command: HoraTrabajo): EmployeeDTO {

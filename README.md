@@ -6,13 +6,11 @@ NUEVO PROYECTO!!!!
 
 3.- docker-compose build (ejecutar solo una vez para crear la imagen)
 
-(OPCIONAL) Si hiciste algun ajuste en el codigo y ya existe la imagen, hay que eliminarla
+(OPCIONAL) ELIMINAR IMAGEN DOCKER - Si hiciste algun ajuste en el codigo y ya existe la imagen, hay que eliminarla
 
 4.- docker-compose up -d (para iniciar los servicios)
 
 (OPCIONAL) docker-compose down (para dar de baja los servicios)
-
-deprecado 6.- ./gradlew migracion  
 
 6.- ./gradlew :infraestructure:database:jooq:tables:flywayClean
 

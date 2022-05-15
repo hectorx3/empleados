@@ -32,7 +32,7 @@ class R2dbcDataSource private constructor() {
     private var ds: ConnectionPool
 
     init {
-        val applicationFile = FileInputStream(File("src/main/resources/application.yml"))
+        val applicationFile = FileInputStream(File("src/main/resources/otro.yml"))
         val configFile = Yaml(Constructor(ConfigurationFile::class.java)).load<ConfigurationFile>(applicationFile)
         val defaultDatabaseConf = getCurrentDatabaseConfig(configFile.runmode, configFile.database)
         val connFactory = ConnectionFactories.get(
@@ -69,7 +69,7 @@ class HikariDataSourceImp private constructor() {
     private val config = HikariConfig()
     private var ds: HikariDataSource
     init {
-        val i = FileInputStream(File("src/main/resources/application.yml"))
+        val i = FileInputStream(File("src/main/resources/otro.yml"))
         val configFile = Yaml(Constructor(ConfigurationFile::class.java)).load<ConfigurationFile>(i)
         val defaultDatabaseConf = getCurrentDatabaseConfig(configFile.runmode, configFile.database)
         config.jdbcUrl = defaultDatabaseConf.host

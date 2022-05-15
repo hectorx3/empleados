@@ -1,4 +1,4 @@
-FROM openjdk:17-alpine
+FROM openjdk:17-alpine AS myexamen
 WORKDIR /home/app
 COPY infraestructure/web/micronaut/build/docker/main/layers/libs /home/app/libs
 COPY infraestructure/web/micronaut/build/docker/main/layers/classes /home/app/classes

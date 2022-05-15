@@ -1,12 +1,15 @@
 package mx.edu.ucaribe.ssav2.company
 
+import jakarta.inject.Inject
+import jakarta.inject.Singleton
 import mx.edu.ucaribe.ssav2.company.models.*
 import mx.edu.ucaribe.ssav2.company.repositories.CompanyRepository
 import java.math.BigDecimal
 import java.time.LocalDate
 
+@Singleton
 class QueryCompany
-constructor(
+@Inject constructor(
     private val companyRepository: CompanyRepository
 ){
     fun findAllGenders(): List<Genero> {

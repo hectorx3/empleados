@@ -2,6 +2,7 @@ package mx.unicaribe.ssav2.boostrap
 
 import com.zaxxer.hikari.HikariConfig
 import com.zaxxer.hikari.HikariDataSource
+import io.micronaut.context.annotation.Bean
 import io.micronaut.context.annotation.ConfigurationProperties
 import io.micronaut.context.annotation.Factory
 import jakarta.inject.Singleton
@@ -10,42 +11,33 @@ import mx.edu.ucaribe.ssav2.company.repositories.CompanyRepository
 import mx.edu.ucaribe.ssav2.company.usecases.RegisterEmployee
 import mx.edu.ucaribe.ssav2.company.usecases.RegisterWorkedHours
 import mx.unicaribe.ssav2.company.CompanyRepositoryImp
-import javax.validation.constraints.NotBlank
+import javax.validation.constraints.NotNull
 
-
-@ConfigurationProperties("database")
+@ConfigurationProperties(value = "customdatabase")
 class CustomSourcesConfiguration {
-    @NotBlank
-    var env = ""
 
-    @NotBlank
-    var enviroments: List<DatabaseEnviroments> = listOf()
+    @get:NotNull
+    var host: String? = null
 
-    class DatabaseEnviroments{
-        var tag: String = ""
-        var host: String = ""
-        var user: String = ""
-        var password: String = ""
-    }
+    @get:NotNull
+    var user: String? = null
+
+    @get:NotNull
+    var password: String? = null
 }
 
 @Factory
 class RepositoriesFactory {
 
-    @Singleton
-    fun getDataSource(conf: CustomSourcesConfiguration): HikariDataSource {
+    @Bean
+    fun getCompanyRepository(conf: CustomSourcesConfiguration): CompanyRepository {
         val config = HikariConfig()
-        val defaultDatabaseConf = conf.enviroments.first { d -> d.tag.lowercase() == conf.env.lowercase() }
-        config.jdbcUrl = defaultDatabaseConf.host
-        config.username = defaultDatabaseConf.user
-        config.password = defaultDatabaseConf.password
+        config.jdbcUrl = conf.host
+        config.username = conf.user
+        config.password = conf.password
         config.maximumPoolSize = 15
-        return HikariDataSource(config)
-    }
-
-    @Singleton
-    fun companyRepository(ds: HikariDataSource): CompanyRepository {
-        return CompanyRepositoryImp(ds)
+        val a = CompanyRepositoryImp(HikariDataSource(config))
+        return a
     }
 }
 
@@ -67,6 +59,3 @@ class UseCasesFactory {
         return RegisterWorkedHours(companyRepository)
     }
 }
-
-
-

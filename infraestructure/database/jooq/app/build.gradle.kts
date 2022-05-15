@@ -23,7 +23,7 @@ dependencies {
     implementation("org.yaml:snakeyaml:$yamlVersion")
     testImplementation("org.yaml:snakeyaml:$yamlVersion")
 
-    api("com.zaxxer:HikariCP:$hikariVersion")
+    implementation("com.zaxxer:HikariCP:$hikariVersion")
 
     implementation("io.projectreactor:reactor-core")
     testImplementation("io.projectreactor:reactor-test")

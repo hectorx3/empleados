@@ -1,6 +1,8 @@
 package mx.unicaribe.ssav2.company
 
 import com.zaxxer.hikari.HikariDataSource
+import jakarta.inject.Inject
+import jakarta.inject.Singleton
 import mx.edu.ucaribe.ssav2.company.models.*
 import mx.edu.ucaribe.ssav2.company.repositories.CompanyRepository
 import org.jooq.SQLDialect
@@ -11,9 +13,9 @@ import schemas.tables.Genders
 import schemas.tables.Jobs
 import java.time.LocalDate
 
-
+@Singleton
 class CompanyRepositoryImp
- constructor(
+@Inject constructor(
      private val ds: HikariDataSource
  ) : CompanyRepository {
 

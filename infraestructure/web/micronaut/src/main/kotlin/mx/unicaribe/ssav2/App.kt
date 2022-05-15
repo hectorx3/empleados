@@ -11,7 +11,8 @@ object App {
             .args(*args)
             .packages("mx.unicaribe.ssav2")
             //.defaultEnvironments(enviroment)
-            .eagerInitConfiguration(true)
+            //.eagerInitConfiguration(true)
+            //.eagerInitSingletons(true)
             .start()
     }
 }

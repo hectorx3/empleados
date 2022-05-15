@@ -12,21 +12,7 @@ jackson:
   serializationInclusion: ALWAYS
   date-format: 'YYYY-MM-DD'
 
-database:
-  env: "dev"
-  enviroments:
-    -
-      tag: "dev"
-      host: "jdbc:postgresql://192.168.0.4:5432/examen"
-      user: "postgres"
-      password: "1234"
-    -
-      tag: "prod"
-      host: "jdbc:postgresql://localhost:5432/bdcaribe_dev"
-      user: "admsifix"
-      password: "dev"
-    -
-      tag: "react"
-      host: "r2dbc:postgresql://localhost:5432/bdcaribe_dev"
-      user: "admsifix"
-      password: "dev"
+customdatabase:
+  host: "jdbc:postgresql://192.168.0.4:5432/examen"
+  user: "postgres"
+  password: "1234"
