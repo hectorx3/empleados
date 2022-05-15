@@ -12,7 +12,11 @@ NUEVO PROYECTO!!!!
 
 (OPCIONAL) docker-compose down (para dar de baja los servicios)
 
-6.- ./gradlew migracion  
+deprecado 6.- ./gradlew migracion  
+
+6.- ./gradlew :infraestructure:database:jooq:tables:flywayClean
+
+7.- ./gradlew :infraestructure:database:jooq:tables:flywayMigrate
 
 Para ejecutar la aplicacion, es necesario contar con: 
 

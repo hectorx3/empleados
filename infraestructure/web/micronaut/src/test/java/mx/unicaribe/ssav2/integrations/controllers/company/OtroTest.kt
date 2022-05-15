@@ -15,7 +15,7 @@ class OtroTest(
     @Client("/") private var client: HttpClient
 ) : BehaviorSpec({
 
-    given("a broomstick") {
+    /*given("a broomstick") {
         `when`("I sit on it") {
             then("I should be able to fly") {
                 val request: HttpRequest<Any> = HttpRequest.GET("/company/meet")
@@ -24,7 +24,7 @@ class OtroTest(
                 assertEquals("Hello World", body)
             }
         }
-    }
+    }*/
 })
 
 @MicronautTest
