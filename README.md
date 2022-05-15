@@ -1,5 +1,34 @@
 NUEVO PROYECTO!!!!
 
+Herramientas nesesarias para corre la aplicacion son:
+
+1.- Docker y docker compose
+2.- Intellij 2021
+3.- Java 11
+4.- Gradle (Opcional pero es para un mejor desempeño)
+
+Pasos para ejecutar la aplicacion
+
+Cambiar la ip del host postgresql por la de tu maquina (ip local)
+En el archivo application.yml, la ruta es: /infraestructure/web/micronaut/src/main/resources/application.yml
+
+Ejemplo:
+
+
+    customdatabase:
+        host: "jdbc:postgresql://192.168.0.4:5432/examen" <--- aqui cambiar por la ip local de tu maquina
+
+En el archivo docker-compose.yml, la ruta es: /docker-compose.yml
+    
+    services:
+        web:
+            build: .
+            ports:
+              - "8080:8080"
+            environment:
+              JDBC_URL: jdbc:postgresql://192.168.0.4:5432/examen <--- aqui cambiar por la ip local de tu maquina
+
+
 1.- ./gradlew :infraestructure:web:micronaut:clean
 
 2.- ./gradlew :infraestructure:web:micronaut:build
@@ -16,74 +45,56 @@ NUEVO PROYECTO!!!!
 
 7.- ./gradlew :infraestructure:database:jooq:tables:flywayMigrate
 
-Para ejecutar la aplicacion, es necesario contar con: 
+En caso de correr la aplicacion desde el intellij hacer lo siguiente:
 
-1.- docker y docker-compose instalado.
+Construir (Build) la apliacion dando click derecho en el archivo micronaut (PATH: /infraestrusture/web/micronaut)
 
-Una vez instalado lo necesario, dentro de la carpeta del proyecto 
-(ubicado en la raiz del proyecto), ejecutamos los siguientes comandos de Gradle.
+Levantar algun servicio de postgres 14 o hacer lo siguiente:
+1.- docker-compose build (ejecutar solo una vez para crear la imagen)
 
-
-1.- gradle clean
-
-
-2.- gradle build
-
-Antes de iniciar los servicios, modificar el siguien archivo "docker-compose.yml", ubicado en la carpeta rai
-
-
-Al abrirlo, cambiar la siguiente linea de la "IP" por tu "IP local" (la obtienes por medio de la consola con ifconfig o ipconfig)
-* JDBC_URL: jdbc:postgresql://192.168.0.4:5432/examen
-
-Guardamos y continuamos con los comandos
-
-2.- gradle task dockerfile
-
-
-3.- gradle task dockerBuild
-
-
-4.- docker-compose up -d (comando para iniciar los servicios)
-
-
-5.- docker-compose stop (comando para detener los servicios)
+2.- docker-compose up -d (para iniciar los servicios)
 
 Y listo puede probar la siguiente url:
-http://localhost:8080/company/gender/list
-
-Si desea ejecutar el proyecto desde un IDE como intellij se necesita primero
-levantar un servicio de base datos POSTGRESQL 14.2.
-Una vez iniciado postgresql, ejecutar en linea de comando:
-
-1.- Cambiar la ip en el archivo src/main/resources/application.yml 
-por la de su ip local, buscar la siguiente linea:
-
-* url: ${JDBC_URL:`jdbc:postgresql://192.168.0.4:5432/examen`} <--- aqui cambiar la ip por la de la instancia del contenedor de posgresql
-
-2.- listo, ejecutar la aplicacion
-
+http://localhost:8080/company/genders
 
 
 API REST - Uris de ejemplo
 
-GET - http://localhost:8080/company/gender/list
+GET - http://localhost:8080/company/genders
+
+GET - http://localhost:8080/company/jobs
+
+POST - http://localhost:8080/company/employees - EJERCICIO 1
+
+Ejemplo body json
+`{
+"gender_id": 1,
+"job_id": 1,
+"name": "hector123",
+"last_name": "alvarez",
+"birthdate": "2020-07-14"
+}`
+
+GET - http://localhost:8080/company/employees
+
+GET - http://localhost:8080/company/employees?idjob=1 - EJERCICIO 3
+
+POST - http://localhost:8080/company/employees/bitacora - EJERCICIO 2
+
+Ejemplo body json
+`{
+    "employee_id": 1,
+    "worked_hours": 11,
+    "worked_date": "2022-04-19"
+}`
+
+GET - http://localhost:8080/company/employees/bitacora
+
+GET - http://localhost:8080/company/employees/total-payment?id=2&start=2022-04-14&end=2022-04-18 - EJERCICIO 5
+
+GET - http://localhost:8080/company/employees/bitacora/total-hours?id=1&start=2022-04-14&end=2022-04-14 - EJERCICIO 4
 
 
-GET - http://localhost:8080/company/job/list
-
-
-GET - http://localhost:8080/company/employee/list
-
-
-GET - http://localhost:8080/company/worker/list
-
-
-GET - http://localhost:8080/company/payments?id=1&start=2022-04-12&end=2022-04-16
-
-
-GET - http://localhost:8080/company/hours?id=1&start=2022-04-12&end=2022-04-16
-
-POST - http://localhost:8080/company/employee
 
 
 Ejemplo body:
